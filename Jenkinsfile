@@ -13,7 +13,9 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                branch 'master'
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+                }
             }
             steps {
                 echo 'this is production Deploy step'
